@@ -1,13 +1,13 @@
 import unittest
 from soda_machine import SodaMachine
 from coins import Coin
+from cans import Can
 
-class TestFillRegister(unittest.TestCase):
+class TestSodaMachine(unittest.TestCase):
     """Tests for the fill register method in SodaMachine"""
     
     def setUp(self):
         self.soda_machine = SodaMachine()
-
 
     def test_register_list_is_filled_with_correct_objects(self):
         """Tests to make sure our register list is filled with 88 objects."""
@@ -69,7 +69,8 @@ class TestFillRegister(unittest.TestCase):
         self.assertEqual(0,value_of_difference)
 
     def test_calculate_coin_value_to_ensure_every_coin_has_correct_value(self):
-        quarter = Coin("Quarter", .25)
+        """Testsing the coin names and values are correct and work by adding them all together."""
+        quarter = Can("Quarter", .25)
         dime = Coin("Dime", .10)
         nickel = Coin("Nickel", .05)
         penny = Coin("Penny", .01)
@@ -79,7 +80,15 @@ class TestFillRegister(unittest.TestCase):
         empty_list_of_coins = self.soda_machine.calculate_coin_value([])
         self.assertEqual(0,empty_list_of_coins)
 
-    
+    def test_get_inventory_soda_to_get_back_same_soda_name(self):
+        """Testing the soda names to make sure the names are all correct and work."""
+        cola = Can("Cola", .60)
+        orange_soda = Can("Orange Soda", .40)
+        root_beer = Can("Root Beer", .50)
+
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
