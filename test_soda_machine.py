@@ -1,11 +1,13 @@
 import unittest
 from soda_machine import SodaMachine
+from coins import Coin
 
-class TestFill_Register(unittest.TestCase):
+class TestFillRegister(unittest.TestCase):
     """Tests for the fill register method in SodaMachine"""
     
     def setUp(self):
         self.soda_machine = SodaMachine()
+
 
     def test_register_list_is_filled_with_correct_objects(self):
         """Tests to make sure our register list is filled with 88 objects."""
@@ -36,6 +38,48 @@ class TestFill_Register(unittest.TestCase):
         none_is_returned = self.soda_machine.get_coin_from_register("Invalid")
         self.assertEqual(None, none_is_returned)
 
+    def test_register_has_coin_returns_true_for_all_coins(self):
+        """Tests to make sure each valid coin will return True or return False for a non-valid coin name."""
+        """Quarter"""
+        returns_true = self.soda_machine.register_has_coin("Quarter")
+        self.assertEqual(True,returns_true)
+        """Dime"""
+        returns_true = self.soda_machine.register_has_coin("Dime")
+        self.assertEqual(True,returns_true)
+        """Nickel"""
+        returns_true = self.soda_machine.register_has_coin("Nickel")
+        self.assertEqual(True,returns_true)
+        """Penny"""
+        returns_true = self.soda_machine.register_has_coin("Penny")
+        self.assertEqual(True,returns_true)
+        """Invalid coin name"""
+        non_valid_coin_name = self.soda_machine.register_has_coin("Invalid")
+        self.assertEqual(False,non_valid_coin_name)
+
+    def test_determine_change_value_returns_correct_difference(self):
+        """Tests to make sure determine_change_value returns the correct amount of change."""
+        """Test with total payment higher"""
+        value_of_difference = self.soda_machine.determine_change_value(5,2)
+        self.assertEqual(3,value_of_difference)
+        """Test with select soda price higher."""
+        value_of_difference = self.soda_machine.determine_change_value(2,5)
+        self.assertEqual(-3,value_of_difference)
+        """Test with equal values"""
+        value_of_difference = self.soda_machine.determine_change_value(5,5)
+        self.assertEqual(0,value_of_difference)
+
+    def test_calculate_coin_value_to_ensure_every_coin_has_correct_value(self):
+        quarter = Coin("Quarter", .25)
+        dime = Coin("Dime", .10)
+        nickel = Coin("Nickel", .05)
+        penny = Coin("Penny", .01)
+        one_of_each_coin_value = self.soda_machine.calculate_coin_value([quarter, dime, nickel, penny])
+        self.assertEqual(.41, one_of_each_coin_value)
+        """Adding no coins together."""
+        empty_list_of_coins = self.soda_machine.calculate_coin_value([])
+        self.assertEqual(0,empty_list_of_coins)
+
+    
 
 if __name__ == '__main__':
     unittest.main()
