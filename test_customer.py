@@ -1,5 +1,6 @@
 from typing import Union
 import unittest
+import coins
 from customer import Customer
 
 class TestGetWalletCoin(unittest.TestCase):
@@ -34,7 +35,24 @@ class TestGetWalletCoin(unittest.TestCase):
         self.assertIsNone(coin)
 
 class TestAddCoinsToWallet(unittest.TestCase):
-    pass
+    """Tests for the add_coins_to_wallet method in Customer"""
+
+    def setUp(self):
+        self.customer = Customer()
+
+    def test_adding_coins_increases_length_of_money_list(self):
+        """Test that passing in a list of 3 coins increases length of customer's wallet's money list by 3"""
+        original_money_length = len(self.customer.wallet.money)
+        self.customer.add_coins_to_wallet([coins.Dime, coins.Penny, coins.Nickel])
+        new_money_length = len(self.customer.wallet.money)
+        self.assertEqual((original_money_length + 3), new_money_length)
+
+    def test_adding_no_coins_doesnt_increase_length_of_money_list(self):
+        """Test that passing in an empty list does not increase length of customer's wallet's money list"""
+        original_money_length = len(self.customer.wallet.money)
+        self.customer.add_coins_to_wallet([])
+        new_money_length = len(self.customer.wallet.money)
+        self.assertEqual(original_money_length, new_money_length)
 
 class TestAddCanToBackpack(unittest.TestCase):
     pass
