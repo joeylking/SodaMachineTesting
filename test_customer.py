@@ -1,6 +1,7 @@
 from typing import Union
 import unittest
 import coins
+from cans import Cola
 from customer import Customer
 
 class TestGetWalletCoin(unittest.TestCase):
@@ -55,7 +56,17 @@ class TestAddCoinsToWallet(unittest.TestCase):
         self.assertEqual(original_money_length, new_money_length)
 
 class TestAddCanToBackpack(unittest.TestCase):
-    pass
+    """Tests for the add_can_to_backpack method in Customer"""
+
+    def setUp(self):
+        self.customer = Customer()
+
+    def test_adding_cola_object_increases_purchased_cans_length(self):
+        """Test that passing in a Cola object increases the length of customer's backpack's purchased_cans by 1"""
+        original_purchased_length = len(self.customer.backpack.purchased_cans)
+        self.customer.add_can_to_backpack(Cola)
+        new_purchased_length = len(self.customer.backpack.purchased_cans)
+        self.assertEqual((original_purchased_length + 1), new_purchased_length)
 
 if __name__ == '__main__':
     unittest.main()
