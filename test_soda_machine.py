@@ -38,7 +38,6 @@ class TestSodaMachine(unittest.TestCase):
         none_is_returned = self.soda_machine.get_coin_from_register("Invalid")
         self.assertEqual(None, none_is_returned)
 
-
     def test_register_has_coin_returns_true_for_all_coins(self):
         """Tests to make sure each valid coin will return True or return False for a non-valid coin name."""
         """Quarter"""
@@ -81,21 +80,20 @@ class TestSodaMachine(unittest.TestCase):
         empty_list_of_coins = self.soda_machine.calculate_coin_value([])
         self.assertEqual(0,empty_list_of_coins)
 
-    # def test_get_inventory_soda_to_get_back_same_soda_name(self):
-    #     """Testing the soda names to make sure the names are all correct and work."""
-    #     cola = Can("Cola", .60)
-    #     orange_soda = Can("Orange Soda", .40)
-    #     root_beer = Can("Root Beer", .50)
-    #     """Cola"""
-    #     returned_from_get_inventory_soda = self.soda_machine.get_inventory_soda("Cola")
-    #     self.assertEqual("Cola", returned_from_get_inventory_soda)
-    #     """Orange Soda"""
-        # returned_from_get_inventory_soda = self.soda_machine.get_inventory_soda("Orange Soda")
-        # self.assertEqual(28,len(self.soda_machine.inventory))
-        # """Root Beer"""
-        # returned_from_get_inventory_soda = self.soda_machine.get_inventory_soda("Root Beer")
-        # self.assertEqual(27,len(self.soda_machine.inventory))
-#         """Mo
+    def test_get_inventory_soda_to_get_back_same_soda_name(self):
+        """Testing the soda names to make sure the names are all correct and work."""
+        """Cola"""
+        passed_can = self.soda_machine.get_inventory_soda("Cola")
+        self.assertEqual("Cola", passed_can.name)
+        """Orange Soda"""
+        passed_can = self.soda_machine.get_inventory_soda("Orange Soda")
+        self.assertEqual("Orange Soda", passed_can.name)
+        """Root Beer"""
+        passed_can = self.soda_machine.get_inventory_soda("Root Beer")
+        self.assertEqual("Root Beer", passed_can.name)
+        """Invalid Input"""
+        passed_can = self.soda_machine.get_inventory_soda("Mountian Dew")
+        self.assertEqual(None, passed_can)
 
     def test_return_inventory_length_of_inventory_increases(self):
         """Test to make sure the length of the inventory increases when a can is returned to it."""
