@@ -1,4 +1,3 @@
-from typing import Union
 import unittest
 import coins
 from cans import Cola

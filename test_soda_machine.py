@@ -36,7 +36,6 @@ class TestFill_Register(unittest.TestCase):
         none_is_returned = self.soda_machine.get_coin_from_register("Invalid")
         self.assertEqual(None, none_is_returned)
 
-
 if __name__ == '__main__':
     unittest.main()
 
