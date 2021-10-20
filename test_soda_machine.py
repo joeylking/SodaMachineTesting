@@ -71,7 +71,7 @@ class TestSodaMachine(unittest.TestCase):
 
     def test_calculate_coin_value_to_ensure_every_coin_has_correct_value(self):
         """Testsing the coin names and values are correct and work by adding them all together."""
-        quarter = Can("Quarter", .25)
+        quarter = Coin("Quarter", .25)
         dime = Coin("Dime", .10)
         nickel = Coin("Nickel", .05)
         penny = Coin("Penny", .01)
@@ -81,11 +81,37 @@ class TestSodaMachine(unittest.TestCase):
         empty_list_of_coins = self.soda_machine.calculate_coin_value([])
         self.assertEqual(0,empty_list_of_coins)
 
-    def test_get_inventory_soda_to_get_back_same_soda_name(self):
-        """Testing the soda names to make sure the names are all correct and work."""
-        cola = Can("Cola", .60)
-        orange_soda = Can("Orange Soda", .40)
-        root_beer = Can("Root Beer", .50)
+    # def test_get_inventory_soda_to_get_back_same_soda_name(self):
+    #     """Testing the soda names to make sure the names are all correct and work."""
+    #     cola = Can("Cola", .60)
+    #     orange_soda = Can("Orange Soda", .40)
+    #     root_beer = Can("Root Beer", .50)
+    #     """Cola"""
+    #     returned_from_get_inventory_soda = self.soda_machine.get_inventory_soda("Cola")
+    #     self.assertEqual("Cola", returned_from_get_inventory_soda)
+    #     """Orange Soda"""
+        # returned_from_get_inventory_soda = self.soda_machine.get_inventory_soda("Orange Soda")
+        # self.assertEqual(28,len(self.soda_machine.inventory))
+        # """Root Beer"""
+        # returned_from_get_inventory_soda = self.soda_machine.get_inventory_soda("Root Beer")
+        # self.assertEqual(27,len(self.soda_machine.inventory))
+#         """Mo
+
+    def test_return_inventory_length_of_inventory_increases(self):
+        """Test to make sure the length of the inventory increases when a can is returned to it."""
+        self.soda_machine.return_inventory("Cola")
+        self.assertEqual(31,len(self.soda_machine.inventory))
+
+    def test_deposit_coins_into_register_ensure_register_has_correct_length(self):
+        """This test is to ensure after the coins are properly populate the register."""
+        quarter = Coin("Quarter", .25)
+        dime = Coin("Dime", .10)
+        nickel = Coin("Nickel", .05)
+        penny = Coin("Penny", .01)
+        list_of_cans = [quarter, dime, nickel, penny]
+        self.soda_machine.deposit_coins_into_register(list_of_cans)
+        register = len(self.soda_machine.register)
+        self.assertEqual(92, register)
 
 if __name__ == '__main__':
     unittest.main()
