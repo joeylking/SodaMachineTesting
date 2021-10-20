@@ -38,6 +38,7 @@ class TestSodaMachine(unittest.TestCase):
         none_is_returned = self.soda_machine.get_coin_from_register("Invalid")
         self.assertEqual(None, none_is_returned)
 
+
     def test_register_has_coin_returns_true_for_all_coins(self):
         """Tests to make sure each valid coin will return True or return False for a non-valid coin name."""
         """Quarter"""
@@ -85,10 +86,6 @@ class TestSodaMachine(unittest.TestCase):
         cola = Can("Cola", .60)
         orange_soda = Can("Orange Soda", .40)
         root_beer = Can("Root Beer", .50)
-
-
-
-
 
 if __name__ == '__main__':
     unittest.main()
