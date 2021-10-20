@@ -84,5 +84,38 @@ class TestDisplayPaymentValue(unittest.TestCase):
         output = user_interface.display_payment_value(payment)
         self.assertEqual(0, output)
 
+class TestValidateCoinSelection(unittest.TestCase):
+    """Tests for the validate_coin_selection function in user_interface module"""
+
+    def test_valid_input_1_returns_proper_tuple(self):
+        """Test that passing in the value of 1 returns a tuple of (True, "Quarter")"""
+        output = user_interface.validate_coin_selection(1)
+        self.assertEqual((True, "Quarter"), output)
+
+    def test_valid_input_2_returns_proper_tuple(self):
+        """Test that passing in the value of 2 returns a tuple of (True, "Dime")"""
+        output = user_interface.validate_coin_selection(2)
+        self.assertEqual((True, "Dime"), output)
+
+    def test_valid_input_3_returns_proper_tuple(self):
+        """Test that passing in the value of 3 returns a tuple of (True, "Nickel")"""
+        output = user_interface.validate_coin_selection(3)
+        self.assertEqual((True, "Nickel"), output)
+    
+    def test_valid_input_4_returns_proper_tuple(self):
+        """Test that passing in the value of 4 returns a tuple of (True, "Penny")"""
+        output = user_interface.validate_coin_selection(4)
+        self.assertEqual((True, "Penny"), output)
+
+    def test_valid_input_5_returns_proper_tuple(self):
+        """Test that passing in the value of 5 returns a tuple of (True, "Done")"""
+        output = user_interface.validate_coin_selection(5)
+        self.assertEqual((True, "Done"), output)
+
+    def test_invalid_input_returns_proper_tuple(self):
+        """Test that passing in the value of 6 returns a tuple of (False, None)"""
+        output = user_interface.validate_coin_selection(6)
+        self.assertEqual((False, None), output)
+
 if __name__ == '__main__':
     unittest.main()
