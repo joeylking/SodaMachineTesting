@@ -43,7 +43,7 @@ class TestAddCoinsToWallet(unittest.TestCase):
     def test_adding_coins_increases_length_of_money_list(self):
         """Test that passing in a list of 3 coins increases length of customer's wallet's money list by 3"""
         original_money_length = len(self.customer.wallet.money)
-        self.customer.add_coins_to_wallet([coins.Dime, coins.Penny, coins.Nickel])
+        self.customer.add_coins_to_wallet([coins.Dime(), coins.Penny(), coins.Nickel()])
         new_money_length = len(self.customer.wallet.money)
         self.assertEqual((original_money_length + 3), new_money_length)
 
